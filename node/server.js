@@ -7,7 +7,7 @@ var app = express();
 app.post('/uploads', upload.single('screen'), function (req, res, next) {
     console.log(req.file);
     console.log(req.body);
-    res.send(req.path);
+    res.send({path:req.path});
 })
 
 app.listen(8088);
