@@ -72,6 +72,7 @@ class Upload extends Component {
     render(){
         return(
                 <div>
+                <h2>Upload</h2>
                 {this.state.status===""?"":<p>{this.state.status}</p>}
                 <Form>
                 <input type="file" onChange={(e)=>this.load(e)}/>

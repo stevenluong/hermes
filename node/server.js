@@ -16,5 +16,6 @@ app.post('/uploads', upload.single('screen'), function (req, res, next) {
 app.get('/test', (req,res,next)=>{
     res.send("test");
 })
+app.use(express.static(__dirname+''))
 
 app.listen(8088);
