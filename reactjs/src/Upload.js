@@ -29,6 +29,9 @@ class Upload extends Component {
             });
         }else{
             formData.append('screen', this.state.file);
+            formData.append('location', location);
+            formData.append('date', new Date());
+            formData.append('comment', comment);
             this.setState({
                 status:"uploading file ..."
             });
@@ -37,32 +40,13 @@ class Upload extends Component {
                 body: formData
             })
             .then(res=>{
-                this.setState({
-                    status:"... Uploaded"
-                });
                 return res.json();
             }).then(data=>{
                 console.log(data);
-                var path = data.path;
-                var params = {
-                    path : path,
-                    date : new Date(),
-                    location : location,
-                    comment : comment
-                };
-                fetch("http://slapps.fr:3001/api/receipts",{
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(params)
-                }).then(res=>{
-                    this.setState({
-                        status:"... Uploaded and Saved" 
-                    });   
+                this.setState({
+                    status:"... Uploaded and Saved" 
+                });   
 
-                })
             })
         }
 

@@ -11,6 +11,8 @@ class Receipt extends Component {
                 Location - {this.props.location}
                 <br/>
                 Comment - {this.props.comment}
+                <br/>
+                Analysis - {this.props.output}
                 </i>
                 <br/>
                 </div>

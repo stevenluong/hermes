@@ -10,16 +10,27 @@ class ReceiptsList extends Component {
     }
     load(){
         var receipts = [];
-        fetch("http://slapps.fr:3001/api/receipts",{
+        fetch("http://slapps.fr:3001/api/receipts?filter[order]=id DESC",{
             method: 'GET'
         }).then(res=>{
                 return res.json();
         }).then(res=>{
             console.log(res);
             res.map(r=>{
-                receipts.push(r);
+                fetch("http://slapps.fr:3001/api/analyses?filter={\"where\":{\"receiptId\":"+r.id+"}}",{
+                    method: 'GET'
+                }).then(res=>{
+                        return res.json();
+                }).then(res=>{
+                    console.log(res);
+                    if(res.length==1)
+                        r.output = res[0].output
+
+                    receipts.push(r);
+                    this.setState({receipts:receipts})
+                })
+
             })
-            this.setState({receipts:receipts})
         })
     }
     render(){
@@ -27,7 +38,7 @@ class ReceiptsList extends Component {
                 <div>
                 <h2>Receipts</h2>
                 {this.state.receipts.map(receipt=>
-                                          <Receipt key={receipt.id} path={receipt.path} location={receipt.location} comment={receipt.comment} date={receipt.date}/> 
+                                          <Receipt key={receipt.id} path={receipt.path} location={receipt.location} comment={receipt.comment} date={receipt.date} output={receipt.output}/> 
                         )}
                 </div>
               )

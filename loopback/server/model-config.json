@@ -38,5 +38,9 @@
   "Receipt": {
     "dataSource": "db",
     "public": true
+  },
+  "Analysis": {
+    "dataSource": "db",
+    "public": true
   }
 }
