@@ -47,8 +47,8 @@ export default function Scan({user, receipts, setReceipts}) {
     //console.log(file);
     //setSimulation({...simulation, rate:e.target.value});
   };
-  //var url = "http://hermes-node.slapps.fr/uploads"; //PROD
-  var url = "http://localhost:8088/uploads"; //LOCAL
+  var url = "https://hermes-node.slapps.fr/uploads"; //PROD
+  //var url = "https://localhost:8088/uploads"; //LOCAL
   const renderRedirect = () => {
     if(redirect){
       return(
