@@ -8,7 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TextField from '@material-ui/core/TextField';
 import Title from './Common/Title';
-import Asset from './Asset';
+import Details from './Details';
 
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
@@ -21,7 +21,7 @@ import IconButton from '@material-ui/core/IconButton';
 export default function Receipts({receipts}) {
   //console.log(assets);
   var sortedReceipts = receipts.sort((a,b)=>(new Date(b.datetime))-(new Date(a.datetime)))
-  const [receipt, setReceipt] = React.useState(null)
+  const [receipt, setReceipt] = React.useState({})
   //const [action, setAction] = React.useState("new")
   const [open, setOpen] = React.useState(false);
   //const [asset, setAsset] = React.useState({})
@@ -70,6 +70,8 @@ export default function Receipts({receipts}) {
 
         </TableBody>
       </Table>
+      <Details receipt={receipt} setOpen={setOpen} open={open}/>
+
     </React.Fragment>
   );
 }
