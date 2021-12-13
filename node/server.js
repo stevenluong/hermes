@@ -20,6 +20,9 @@ const worker1 = createWorker({
   logger: m=>console.log(m)
 });
 //const worker2 = createWorker();
+//const worker2 = createWorker({
+//  logger: m=>console.log(m)
+//});
 
 (async () => {
 await worker1.load();
